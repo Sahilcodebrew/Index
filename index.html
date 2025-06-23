@@ -99,12 +99,13 @@
             color: var(--primary-color);
         }
 
-        body.dark-mode .modal-content {
+        body.dark-mode .modal-content, body.dark-mode .qa-modal-content {
             background-color: var(--white);
             color: var(--text-color);
         }
 
-        body.dark-mode .modal-header {
+        body.dark-mode .modal-header, body.dark-mode .qa-modal-header {
+            background: var(--white);
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -146,6 +147,109 @@
         body.dark-mode .search-container button {
             background-color: var(--primary-color);
             color: var(--text-color);
+        }
+
+        /* --- LOGIN OVERLAY --- */
+        .login-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(30, 32, 36, 0.96);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 0.3s;
+        }
+        .login-overlay .login-box {
+            background: var(--white);
+            color: var(--text-color);
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+            padding: 36px 28px 28px 28px;
+            min-width: 320px;
+            max-width: 90vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+        .login-overlay .login-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--primary-color);
+        }
+        .login-overlay .login-form {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .login-overlay .login-form label {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        .login-overlay .login-form input {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            font-size: 1rem;
+            background: var(--light-color);
+            color: var(--text-color);
+        }
+        .login-overlay .login-form input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+        .login-overlay .login-form .login-btn {
+            background: var(--primary-color);
+            color: var(--white);
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: background 0.2s;
+        }
+        .login-overlay .login-form .login-btn:hover {
+            background: var(--primary-dark);
+        }
+        .login-overlay .login-error {
+            color: var(--danger-color);
+            font-size: 0.98rem;
+            margin-top: 6px;
+            min-height: 20px;
+        }
+        .login-overlay .login-brand {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+        body.dark-mode .login-overlay .login-box {
+            background: #23242a;
+            color: var(--text-color);
+        }
+        body.dark-mode .login-overlay .login-form input {
+            background: var(--border-color);
+            color: var(--text-color);
+        }
+        body.dark-mode .login-overlay {
+            background: rgba(30, 32, 36, 0.98);
+        }
+
+        /* Make Modal Headers Sticky */
+        .modal-header, .qa-modal-header {
+            position: sticky;
+            top: 0;
+            background: inherit;
+            z-index: 2;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
         }
 
         header {
@@ -1086,6 +1190,26 @@
         }
 
         @media (max-width: 600px) {
+            header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 12px 10px;
+            }
+            .logo {
+                font-size: 20px;
+            }
+            .welcome {
+                font-size: 16px;
+                margin-top: 4px;
+            }
+            main {
+                padding: 12px 4px 80px 4px;
+            }
+            .modal-content, .qa-modal-content {
+                max-width: 98vw;
+                padding: 0;
+            }
+            
             .attendance-options {
                 flex-direction: column;
                 gap: 10px;
@@ -1125,6 +1249,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- LOGIN OVERLAY -->
+    <div id="loginOverlay" class="login-overlay" style="display:none;">
+        <div class="login-box">
+            <div class="login-brand">Laundromat Pro</div>
+            <div class="login-title">Sign In</div>
+            <form class="login-form" id="loginForm" autocomplete="off">
+                <div>
+                    <label for="loginUsername">Username</label>
+                    <input type="text" id="loginUsername" placeholder="Enter username" required autofocus>
+                </div>
+                <div>
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div class="login-error" id="loginError"></div>
+            </form>
+        </div>
+    </div>
+
     <header>
         <div class="logo">
             <i class="fas fa-tshirt"></i>
@@ -1684,6 +1828,13 @@
         const washingCompleteSound = document.getElementById('washingCompleteSound');
         const dryingCompleteSound = document.getElementById('dryingCompleteSound');
         
+        // Login elements
+        const loginOverlay = document.getElementById('loginOverlay');
+        const loginForm = document.getElementById('loginForm');
+        const loginError = document.getElementById('loginError');
+        const loginUsername = document.getElementById('loginUsername');
+        const loginPassword = document.getElementById('loginPassword');
+        
         // Track attendance status
         let isCheckedIn = false;
         let attendanceHistory = [];
@@ -1788,6 +1939,38 @@
             }
         ];
 
+        // LOGIN ENFORCEMENT FUNCTIONS
+        function showLoginOverlay() {
+            loginOverlay.style.display = 'flex';
+            setTimeout(() => { loginUsername.focus(); }, 100);
+        }
+        
+        function hideLoginOverlay() {
+            loginOverlay.style.display = 'none';
+        }
+        
+        function isLoggedIn() {
+            return localStorage.getItem('laundromat_logged_in') === 'true';
+        }
+        
+        function setLoggedIn(val) {
+            if (val) {
+                localStorage.setItem('laundromat_logged_in', 'true');
+            } else {
+                localStorage.removeItem('laundromat_logged_in');
+            }
+        }
+        
+        function enforceLogin() {
+            if (!isLoggedIn()) {
+                showLoginOverlay();
+                document.body.style.overflow = 'hidden';
+            } else {
+                hideLoginOverlay();
+                document.body.style.overflow = '';
+            }
+        }
+        
         // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             // Set current date in terms and privacy modals
@@ -1879,6 +2062,9 @@
                 document.body.classList.add('dark-mode');
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             }
+            
+            // Enforce login
+            enforceLogin();
             
             // Set up event listeners
             setupEventListeners();
@@ -2321,6 +2507,28 @@
                 if (event.target.closest('.order-details-btn')) {
                     const orderId = parseInt(event.target.closest('.order-details-btn').dataset.id);
                     showOrderDetails(orderId);
+                }
+            });
+            
+            // Login form submit
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const user = loginUsername.value.trim();
+                const pass = loginPassword.value;
+                if (user === 'Laundromat' && pass === '123456') {
+                    setLoggedIn(true);
+                    hideLoginOverlay();
+                    loginError.textContent = '';
+                    document.body.style.overflow = '';
+                } else {
+                    loginError.textContent = 'Invalid username or password.';
+                }
+            });
+            
+            // Prevent interaction with app when overlay is shown
+            loginOverlay.addEventListener('click', function(e) {
+                if (e.target === loginOverlay) {
+                    loginUsername.focus();
                 }
             });
         }
@@ -3119,9 +3327,9 @@
 
         function logout() {
             if (confirm("Are you sure you want to log out?")) {
-                // In a real app, this would redirect to login page
-                alert("You have been logged out. Redirecting to login...");
-                // window.location.href = "login.html";
+                setLoggedIn(false);
+                showLoginOverlay();
+                document.body.style.overflow = 'hidden';
             }
         }
 
