@@ -36,46 +36,54 @@
             --primary-color: #6e8efb;
             --primary-dark: #5a7de8;
             --secondary-color: #8aa4ff;
-            --light-color: #121212;
-            --dark-color: #f8f9fa;
-            --gray-color: #adb5bd;
-            --border-color: #2a2a2a;
-            --white: #1e1e1e;
-            --text-color: #f5f5f5;
-            --text-muted: #adb5bd;
+            --light-color: #121212; /* Dark background */
+            --dark-color: #f8f9fa; /* Light text */
+            --gray-color: #9e9e9e; /* Lighter gray for better visibility */
+            --border-color: #333333; /* Darker borders */
+            --white: #1e1e1e; /* Dark cards */
+            --text-color: #f5f5f5; /* Light text */
+            --text-muted: #b0b0b0; /* Light muted text */
             background-color: var(--light-color);
             color: var(--text-color);
         }
 
         body.dark-mode header {
-            background: linear-gradient(135deg, #4a4a4a, #2a2a2a);
+            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+            border-bottom: 1px solid #333;
         }
 
         body.dark-mode .nav-menu {
             background-color: var(--white);
             color: var(--text-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
         }
 
         body.dark-mode .nav-menu ul li {
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #333;
         }
 
         body.dark-mode .nav-menu ul li:hover {
-            background-color: var(--border-color);
+            background-color: #333;
         }
 
         body.dark-mode .clothes-section {
-            background-color: var(--white);
+            background-color: #252525;
             color: var(--text-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
         body.dark-mode .section-header {
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #333;
         }
 
         body.dark-mode .clothes-card {
-            background-color: var(--border-color);
+            background-color: #2d2d2d;
             color: var(--text-color);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        body.dark-mode .clothes-card:hover {
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
         }
 
         body.dark-mode .clothes-info h3 {
@@ -87,7 +95,9 @@
         }
 
         body.dark-mode footer {
-            background-color: var(--white);
+            background-color: #1e1e1e;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
+            border-top: 1px solid #333;
         }
 
         body.dark-mode .footer-btn {
@@ -99,54 +109,141 @@
             color: var(--primary-color);
         }
 
-        body.dark-mode .modal-content, body.dark-mode .qa-modal-content {
-            background-color: var(--white);
+        body.dark-mode .modal-content, 
+        body.dark-mode .qa-modal-content {
+            background-color: #252525;
             color: var(--text-color);
+            border: 1px solid #333;
         }
 
-        body.dark-mode .modal-header, body.dark-mode .qa-modal-header {
-            background: var(--white);
-            border-bottom: 1px solid var(--border-color);
+        body.dark-mode .modal-header, 
+        body.dark-mode .qa-modal-header {
+            background: #2a2a2a;
+            border-bottom: 1px solid #333;
         }
 
         body.dark-mode .close-btn {
             color: var(--text-muted);
         }
 
+        body.dark-mode .close-btn:hover {
+            color: var(--text-color);
+        }
+
         body.dark-mode .profile-option {
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #333;
         }
 
         body.dark-mode .profile-option:hover {
-            background-color: var(--border-color);
+            background-color: #333;
         }
 
         body.dark-mode .attendance-record,
         body.dark-mode .order-history-item,
         body.dark-mode .transaction-item,
         body.dark-mode .wallet-balance {
-            background-color: var(--border-color);
+            background-color: #2d2d2d;
             color: var(--text-color);
         }
 
         body.dark-mode .order-history-header,
         body.dark-mode .order-history-timeline,
         body.dark-mode .order-history-details {
-            border-bottom: 1px solid var(--border-color);
-            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid #333;
+            border-top: 1px solid #333;
         }
 
         body.dark-mode .form-group input,
         body.dark-mode .qa-form-group textarea,
         body.dark-mode .search-container input {
-            background-color: var(--border-color);
+            background-color: #333;
             color: var(--text-color);
-            border: 1px solid var(--border-color);
+            border: 1px solid #444;
+        }
+
+        body.dark-mode .search-container input::placeholder {
+            color: #777;
         }
 
         body.dark-mode .search-container button {
             background-color: var(--primary-color);
             color: var(--text-color);
+        }
+
+        body.dark-mode .empty-state {
+            color: var(--text-muted);
+        }
+
+        body.dark-mode .empty-state i {
+            color: #555;
+        }
+
+        /* Notification System */
+        .notification-container {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 350px;
+            width: 100%;
+        }
+
+        .notification {
+            position: relative;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            transform: translateX(100%);
+            opacity: 0;
+            animation: slideIn 0.5s forwards, fadeOut 0.5s 3.5s forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeOut {
+            to {
+                opacity: 0;
+            }
+        }
+
+        .notification i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .notification-success {
+            background-color: var(--success-color);
+            border-left: 5px solid #1e7e34;
+        }
+
+        .notification-error {
+            background-color: var(--danger-color);
+            border-left: 5px solid #bd2130;
+        }
+
+        .notification-warning {
+            background-color: var(--warning-color);
+            border-left: 5px solid #d39e00;
+            color: #212529;
+        }
+
+        .notification-info {
+            background-color: var(--info-color);
+            border-left: 5px solid #117a8b;
+        }
+
+        .notification-primary {
+            background-color: var(--primary-color);
+            border-left: 5px solid #2653d4;
         }
 
         /* --- LOGIN OVERLAY --- */
@@ -236,8 +333,9 @@
             color: var(--text-color);
         }
         body.dark-mode .login-overlay .login-form input {
-            background: var(--border-color);
+            background: #333;
             color: var(--text-color);
+            border: 1px solid #444;
         }
         body.dark-mode .login-overlay {
             background: rgba(30, 32, 36, 0.98);
@@ -856,6 +954,11 @@
             font-size: 24px;
             cursor: pointer;
             color: var(--gray-color);
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover {
+            color: var(--text-color);
         }
 
         .modal-body {
@@ -1241,6 +1344,17 @@
             .wallet-actions {
                 flex-direction: column;
             }
+            
+            .notification-container {
+                top: 60px;
+                right: 10px;
+                max-width: calc(100% - 20px);
+            }
+            
+            .notification {
+                padding: 12px;
+                font-size: 14px;
+            }
         }
     </style>
     <!-- Font Awesome for icons -->
@@ -1249,6 +1363,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Notification Container -->
+    <div class="notification-container" id="notificationContainer"></div>
+    
     <!-- LOGIN OVERLAY -->
     <div id="loginOverlay" class="login-overlay" style="display:none;">
         <div class="login-box">
@@ -1835,6 +1952,9 @@
         const loginUsername = document.getElementById('loginUsername');
         const loginPassword = document.getElementById('loginPassword');
         
+        // Notification container
+        const notificationContainer = document.getElementById('notificationContainer');
+        
         // Track attendance status
         let isCheckedIn = false;
         let attendanceHistory = [];
@@ -1938,6 +2058,35 @@
                 ]
             }
         ];
+
+        // Notification system
+        function showNotification(message, type = 'info') {
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            
+            let icon = '';
+            switch(type) {
+                case 'success':
+                    icon = '<i class="fas fa-check-circle"></i>';
+                    break;
+                case 'error':
+                    icon = '<i class="fas fa-exclamation-circle"></i>';
+                    break;
+                case 'warning':
+                    icon = '<i class="fas fa-exclamation-triangle"></i>';
+                    break;
+                default:
+                    icon = '<i class="fas fa-info-circle"></i>';
+            }
+            
+            notification.innerHTML = `${icon} ${message}`;
+            notificationContainer.appendChild(notification);
+            
+            // Remove notification after animation completes
+            setTimeout(() => {
+                notification.remove();
+            }, 4000);
+        }
 
         // LOGIN ENFORCEMENT FUNCTIONS
         function showLoginOverlay() {
@@ -2068,6 +2217,11 @@
             
             // Set up event listeners
             setupEventListeners();
+            
+            // Show welcome notification
+            if (isLoggedIn()) {
+                showNotification('Welcome back, Attendant!', 'success');
+            }
         });
 
         function renderClothes() {
@@ -2327,7 +2481,7 @@
             submitQaReject.addEventListener('click', () => {
                 const rejectReason = document.getElementById('rejectReason').value;
                 if (!rejectReason) {
-                    alert("Please provide a reason for rejection");
+                    showNotification("Please provide a reason for rejection", "error");
                     return;
                 }
                 
@@ -2354,12 +2508,12 @@
                 const method = document.getElementById('paymentMethod').value;
                 
                 if (!amount || amount < 100) {
-                    alert("Minimum amount to add is ₹100");
+                    showNotification("Minimum amount to add is ₹100", "error");
                     return;
                 }
                 
                 if (!method) {
-                    alert("Please select a payment method");
+                    showNotification("Please select a payment method", "error");
                     return;
                 }
                 
@@ -2378,7 +2532,7 @@
                     transactions: walletTransactions
                 }));
                 
-                alert(`₹${amount.toFixed(2)} added to your wallet successfully!`);
+                showNotification(`₹${amount.toFixed(2)} added to your wallet successfully!`, "success");
                 closeAllModals();
                 this.reset();
             });
@@ -2389,17 +2543,17 @@
                 const account = document.getElementById('bankAccount').value;
                 
                 if (!amount || amount < 100) {
-                    alert("Minimum withdrawal amount is ₹100");
+                    showNotification("Minimum withdrawal amount is ₹100", "error");
                     return;
                 }
                 
                 if (amount > walletBalance) {
-                    alert("Insufficient balance for this withdrawal");
+                    showNotification("Insufficient balance for this withdrawal", "error");
                     return;
                 }
                 
                 if (!account) {
-                    alert("Please select a bank account");
+                    showNotification("Please select a bank account", "error");
                     return;
                 }
                 
@@ -2418,7 +2572,7 @@
                     transactions: walletTransactions
                 }));
                 
-                alert(`Withdrawal request for ₹${amount.toFixed(2)} submitted successfully! It will be processed in 1-3 business days.`);
+                showNotification(`Withdrawal request for ₹${amount.toFixed(2)} submitted successfully! It will be processed in 1-3 business days.`, "success");
                 closeAllModals();
                 this.reset();
             });
@@ -2439,12 +2593,12 @@
                 const confirmPassword = document.getElementById('confirmPassword').value;
                 
                 if (newPassword !== confirmPassword) {
-                    alert("New passwords don't match!");
+                    showNotification("New passwords don't match!", "error");
                     return;
                 }
                 
                 // Here you would typically send to backend
-                alert("Password changed successfully!");
+                showNotification("Password changed successfully!", "success");
                 closeAllModals();
                 this.reset();
             });
@@ -2520,8 +2674,10 @@
                     hideLoginOverlay();
                     loginError.textContent = '';
                     document.body.style.overflow = '';
+                    showNotification('Login successful! Welcome back.', 'success');
                 } else {
                     loginError.textContent = 'Invalid username or password.';
+                    showNotification('Invalid username or password', 'error');
                 }
             });
             
@@ -2561,6 +2717,7 @@
                     <p>No orders found matching "${searchTerm}"</p>
                 `;
                 document.getElementById('pendingGrid').appendChild(emptyState);
+                showNotification(`No orders found for "${searchTerm}"`, 'warning');
                 return;
             }
             
@@ -2589,6 +2746,8 @@
                         break;
                 }
             });
+            
+            showNotification(`Found ${filteredClothes.length} orders matching "${searchTerm}"`, 'success');
         }
 
         // Toggle between dark and light mode
@@ -2598,9 +2757,11 @@
             if (document.body.classList.contains('dark-mode')) {
                 themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
                 localStorage.setItem('darkMode', 'enabled');
+                showNotification('Dark mode enabled', 'info');
             } else {
                 themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
                 localStorage.setItem('darkMode', 'disabled');
+                showNotification('Light mode enabled', 'info');
             }
         }
 
@@ -2615,6 +2776,8 @@
             tabContents.forEach(content => {
                 content.classList.toggle('active', content.id === `${tabId}Tab`);
             });
+            
+            //showNotification(`Viewing ${tabId} orders`, 'info');
         }
 
         // Toggle menu visibility
@@ -2625,7 +2788,7 @@
         // Handle attendant check-in
         function attendantIn() {
             if (isCheckedIn) {
-                alert("You're already checked in!");
+                showNotification("You're already checked in!", "warning");
                 return;
             }
             
@@ -2648,14 +2811,14 @@
             });
             localStorage.setItem('attendanceHistory', JSON.stringify(attendanceHistory));
             
-            // Show confirmation
-            alert(`You've successfully checked in at ${timeString}`);
+            // Show notification
+            showNotification(`Checked in at ${timeString}`, "success");
         }
 
         // Handle attendant check-out
         function attendantOut() {
             if (!isCheckedIn) {
-                alert("You need to check in first!");
+                showNotification("You need to check in first!", "error");
                 return;
             }
             
@@ -2671,7 +2834,7 @@
                 const diffMs = now - checkInDate;
                 const diffHrs = Math.floor(diffMs / (1000 * 60 * 60));
                 const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
-                durationMsg = `\nDuration: ${diffHrs}h ${diffMins}m`;
+                durationMsg = `Duration: ${diffHrs}h ${diffMins}m`;
             }
             
             // Update UI and state
@@ -2689,8 +2852,8 @@
             });
             localStorage.setItem('attendanceHistory', JSON.stringify(attendanceHistory));
             
-            // Show confirmation
-            alert(`You've successfully checked out at ${timeString}${durationMsg}`);
+            // Show notification
+            showNotification(`Checked out at ${timeString}${durationMsg ? ` (${durationMsg})` : ''}`, "success");
         }
 
         // Update attendance buttons UI
@@ -2757,6 +2920,9 @@
                 `;
                 recordsContainer.appendChild(recordElement);
             });
+            
+            attendanceDatesModal.style.display = 'flex';
+            showNotification('Viewing attendance records', 'info');
         }
 
         // Start washing process (40 minutes)
@@ -2765,7 +2931,7 @@
             if (!clothes) return;
             
             if (clothes.status !== 'pending') {
-                alert("This item is already being processed!");
+                showNotification("This item is already being processed!", "warning");
                 return;
             }
             
@@ -2794,7 +2960,7 @@
             renderClothes();
             switchTab('activeWash');
             
-            alert(`Washing started for ${clothes.customer}'s clothes (40 minutes).`);
+            showNotification(`Washing started for ${clothes.customer}'s clothes (40 minutes).`, "success");
         }
 
         // Start drying process (15 minutes)
@@ -2803,7 +2969,7 @@
             if (!clothes) return;
             
             if (clothes.status !== 'pendingDryer') {
-                alert("This item is not ready for drying!");
+                showNotification("This item is not ready for drying!", "warning");
                 return;
             }
             
@@ -2832,7 +2998,7 @@
             renderClothes();
             switchTab('activeDry');
             
-            alert(`Drying started for ${clothes.customer}'s clothes (15 minutes).`);
+            showNotification(`Drying started for ${clothes.customer}'s clothes (15 minutes).`, "success");
         }
 
         // Update the timer display for a specific clothes item
@@ -2878,7 +3044,7 @@
             // Play washing complete sound
             playSound('washingCompleteSound', 3);
             
-            alert(`Washing complete for ${clothes.customer}'s clothes. Ready for drying.`);
+            showNotification(`Washing complete for ${clothes.customer}'s clothes. Ready for drying.`, "success");
         }
 
         // Drying complete handler
@@ -2902,7 +3068,7 @@
             // Play drying complete sound (different sound)
             playSound('dryingCompleteSound', 3);
             
-            alert(`Drying complete for ${clothes.customer}'s clothes. Ready for QA.`);
+            showNotification(`Drying complete for ${clothes.customer}'s clothes. Ready for QA.`, "success");
         }
 
         // Play sound for specified duration in seconds
@@ -2991,7 +3157,7 @@
             // Update UI
             renderClothes();
             
-            alert(`Order #${clothesId} approved and payment of ₹${paymentAmount} added to your wallet.`);
+            showNotification(`Order #${clothesId} approved and payment of ₹${paymentAmount} added to your wallet.`, "success");
         }
 
         // Open QA Reject modal
@@ -3028,7 +3194,7 @@
             renderClothes();
             switchTab('rejected');
             
-            alert(`Order #${clothesId} rejected with feedback: ${feedback}`);
+            showNotification(`Order #${clothesId} rejected with feedback: ${feedback}`, "warning");
         }
 
         // Reprocess rejected clothes
@@ -3050,7 +3216,7 @@
             renderClothes();
             switchTab('pending');
             
-            alert(`Order #${clothesId} sent back for reprocessing.`);
+            showNotification(`Order #${clothesId} sent back for reprocessing.`, "info");
         }
 
         // Footer navigation functions
@@ -3063,6 +3229,8 @@
                 btn.classList.remove('active');
             });
             homeBtn.classList.add('active');
+            
+            showNotification('Returned to dashboard', 'info');
         }
 
         function openQRCodeScanner() {
@@ -3072,7 +3240,7 @@
             });
             qrBtn.classList.add('active');
             
-            alert("QR Code Scanner would open here in a real app");
+            showNotification("QR Code Scanner would open here in a real app", "info");
         }
 
         function openProfile() {
@@ -3084,23 +3252,28 @@
             
             // Open profile modal
             profileModal.style.display = 'flex';
+            
+            //showNotification("Profile options opened", "info");
         }
 
         // Modal functions
         function viewProfile() {
             profileModal.style.display = 'none';
             yourProfileModal.style.display = 'flex';
+            
+            showNotification("Viewing your profile", "info");
         }
 
         function viewAttendance() {
             profileModal.style.display = 'none';
             showAttendanceRecords();
-            attendanceDatesModal.style.display = 'flex';
         }
 
         function changePassword() {
             profileModal.style.display = 'none';
             changePasswordModal.style.display = 'flex';
+            
+            showNotification("Password change form opened", "info");
         }
 
         function viewWallet() {
@@ -3143,6 +3316,8 @@
             }
             
             walletModal.style.display = 'flex';
+            
+            showNotification("Wallet details opened", "info");
         }
 
         function viewOrderHistory() {
@@ -3213,7 +3388,7 @@
                     </div>
                     <div class="order-history-timeline">
                         ${order.history.map(item => {
-                            const itemTime = new Date(item.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                            const itemTime = new Date(item.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                             return `
                             <div class="timeline-item">
                                 <div class="timeline-time">${itemTime}</div>
@@ -3230,6 +3405,8 @@
             });
             
             orderHistoryModal.style.display = 'flex';
+            
+            showNotification("Order history opened", "info");
         }
 
         function showOrderDetails(orderId) {
@@ -3287,7 +3464,7 @@
                 <div class="order-history-timeline" style="display:block;">
                     <h4>Order Timeline:</h4>
                     ${order.history.map(item => {
-                        const itemTime = new Date(item.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                        const itemTime = new Date(item.time).toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
                         return `
                         <div class="timeline-item">
                             <div class="timeline-time">${itemTime}</div>
@@ -3302,27 +3479,34 @@
             
             orderDetailsContainer.appendChild(orderDetails);
             orderDetailsModal.style.display = 'flex';
+            
+            showNotification(`Viewing details for order #${orderId}`, "info");
         }
 
         function showAbout() {
             closeAllModals();
             aboutModal.style.display = 'flex';
+            
+            showNotification("About information opened", "info");
         }
 
         function showTerms() {
             closeAllModals();
             termsModal.style.display = 'flex';
+            
+            showNotification("Terms and conditions opened", "info");
         }
 
         function showPrivacy() {
             closeAllModals();
             privacyModal.style.display = 'flex';
+            
+            showNotification("Privacy policy opened", "info");
         }
 
         function showAttendanceDates() {
             closeAllModals();
             showAttendanceRecords();
-            attendanceDatesModal.style.display = 'flex';
         }
 
         function logout() {
@@ -3330,6 +3514,7 @@
                 setLoggedIn(false);
                 showLoginOverlay();
                 document.body.style.overflow = 'hidden';
+                showNotification("Logged out successfully", "success");
             }
         }
 
