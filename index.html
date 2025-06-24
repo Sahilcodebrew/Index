@@ -36,20 +36,21 @@
             --primary-color: #6e8efb;
             --primary-dark: #5a7de8;
             --secondary-color: #8aa4ff;
-            --light-color: #121212; /* Dark background */
-            --dark-color: #f8f9fa; /* Light text */
-            --gray-color: #9e9e9e; /* Lighter gray for better visibility */
-            --border-color: #333333; /* Darker borders */
-            --white: #1e1e1e; /* Dark cards */
-            --text-color: #f5f5f5; /* Light text */
-            --text-muted: #b0b0b0; /* Light muted text */
+            --light-color: #353935; /* Light gray background */
+            --dark-color: #343a40;
+            --gray-color: #b0b0b0;
+            --border-color: #d1d5db;
+            --white: #696969; /* Light gray cards */
+            --text-color: #23242a;
+            --text-muted: 	#000000;
             background-color: var(--light-color);
             color: var(--text-color);
         }
 
         body.dark-mode header {
-            background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
-            border-bottom: 1px solid #333;
+            background: linear-gradient(135deg, #e6e8ec, #cfd2da);
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
         }
 
         body.dark-mode .nav-menu {
@@ -59,31 +60,31 @@
         }
 
         body.dark-mode .nav-menu ul li {
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--border-color);
         }
 
         body.dark-mode .nav-menu ul li:hover {
-            background-color: #333;
+            background-color: #e0e3e9;
         }
 
         body.dark-mode .clothes-section {
-            background-color: #252525;
+            background-color: var(--white);
             color: var(--text-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
         body.dark-mode .section-header {
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--border-color);
         }
 
         body.dark-mode .clothes-card {
-            background-color: #2d2d2d;
+            background-color: var(--white);
             color: var(--text-color);
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
         }
 
         body.dark-mode .clothes-card:hover {
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
         }
 
         body.dark-mode .clothes-info h3 {
@@ -95,9 +96,9 @@
         }
 
         body.dark-mode footer {
-            background-color: #1e1e1e;
-            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.2);
-            border-top: 1px solid #333;
+            background-color: var(--white);
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+            border-top: 1px solid var(--border-color);
         }
 
         body.dark-mode .footer-btn {
@@ -111,15 +112,15 @@
 
         body.dark-mode .modal-content, 
         body.dark-mode .qa-modal-content {
-            background-color: #252525;
+            background-color: var(--white);
             color: var(--text-color);
-            border: 1px solid #333;
+            border: 1px solid var(--border-color);
         }
 
         body.dark-mode .modal-header, 
         body.dark-mode .qa-modal-header {
-            background: #2a2a2a;
-            border-bottom: 1px solid #333;
+            background: var(--white);
+            border-bottom: 1px solid var(--border-color);
         }
 
         body.dark-mode .close-btn {
@@ -131,43 +132,43 @@
         }
 
         body.dark-mode .profile-option {
-            border-bottom: 1px solid #333;
+            border-bottom: 1px solid var(--border-color);
         }
 
         body.dark-mode .profile-option:hover {
-            background-color: #333;
+            background-color: #e0e3e9;
         }
 
         body.dark-mode .attendance-record,
         body.dark-mode .order-history-item,
         body.dark-mode .transaction-item,
         body.dark-mode .wallet-balance {
-            background-color: #2d2d2d;
+            background-color: var(--white);
             color: var(--text-color);
         }
 
         body.dark-mode .order-history-header,
         body.dark-mode .order-history-timeline,
         body.dark-mode .order-history-details {
-            border-bottom: 1px solid #333;
-            border-top: 1px solid #333;
+            border-bottom: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
         }
 
         body.dark-mode .form-group input,
         body.dark-mode .qa-form-group textarea,
         body.dark-mode .search-container input {
-            background-color: #333;
+            background-color: var(--white);
             color: var(--text-color);
-            border: 1px solid #444;
+            border: 1px solid var(--border-color);
         }
 
         body.dark-mode .search-container input::placeholder {
-            color: #777;
+            color: var(--text-muted);
         }
 
         body.dark-mode .search-container button {
             background-color: var(--primary-color);
-            color: var(--text-color);
+            color: var(--white);
         }
 
         body.dark-mode .empty-state {
@@ -175,7 +176,7 @@
         }
 
         body.dark-mode .empty-state i {
-            color: #555;
+            color: var(--gray-color);
         }
 
         /* Notification System */
@@ -199,7 +200,7 @@
             align-items: center;
             transform: translateX(100%);
             opacity: 0;
-            animation: slideIn 0.5s forwards, fadeOut 0.5s 3.5s forwards;
+            animation: slideIn 0.5s forwards, fadeOut 0.5s 1.5s forwards;
         }
 
         @keyframes slideIn {
@@ -352,12 +353,18 @@
 
         header {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
+            flex-direction: column;
             background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
             color: var(--white);
             padding: 15px 25px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
         }
 
         .header-controls {
@@ -371,16 +378,17 @@
             font-weight: bold;
             display: flex;
             align-items: center;
+            gap: 10px;
         }
 
         .logo i {
             font-size: 28px;
-            margin-right: 10px;
         }
 
         .welcome {
             font-size: 20px;
             font-weight: 500;
+            margin-top: 10px;
         }
 
         .menu-btn {
@@ -455,6 +463,15 @@
         main {
             padding: 25px;
             min-height: calc(100vh - 160px);
+        }
+
+        .fade-in {
+            animation: fadeInMain 0.7s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        @keyframes fadeInMain {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Search Container */
@@ -1295,16 +1312,32 @@
         @media (max-width: 600px) {
             header {
                 flex-direction: column;
-                align-items: flex-start;
-                padding: 12px 10px;
+                align-items: stretch;
+                padding: 10px 6px 10px 6px;
+            }
+            .header-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
             }
             .logo {
-                font-size: 20px;
+                font-size: 18px;
+                flex: 1;
+                display: flex;
+                align-items: center;
+                gap: 6px;
             }
             .welcome {
-                font-size: 16px;
-                margin-top: 4px;
+                font-size: 15px;
+                margin: 0 0 6px 0;
+                text-align: left;
+                padding-left: 2px;
             }
+            .header-controls {
+                gap: 8px;
+            }
+            
             main {
                 padding: 12px 4px 80px 4px;
             }
@@ -1387,17 +1420,19 @@
     </div>
 
     <header>
-        <div class="logo">
-            <i class="fas fa-tshirt"></i>
-            <span>Laundromat Pro</span>
+        <div class="header-row">
+            <div class="logo">
+                <i class="fas fa-tshirt"></i>
+                <span>Laundromat Pro</span>
+            </div>
+            <div class="header-controls">
+                <button class="theme-toggle" id="themeToggle">
+                    <i class="fas fa-moon"></i>
+                </button>
+                <button class="menu-btn" id="menuBtn">☰</button>
+            </div>
         </div>
         <div class="welcome">Welcome, Attendant</div>
-        <div class="header-controls">
-            <button class="theme-toggle" id="themeToggle">
-                <i class="fas fa-moon"></i>
-            </button>
-            <button class="menu-btn" id="menuBtn">☰</button>
-        </div>
     </header>
     
     <nav id="navMenu" class="nav-menu">
@@ -2082,10 +2117,37 @@
             notification.innerHTML = `${icon} ${message}`;
             notificationContainer.appendChild(notification);
             
-            // Remove notification after animation completes
+            // Remove notification after animation completes (2 seconds)
             setTimeout(() => {
                 notification.remove();
-            }, 4000);
+            }, 2000);
+        }
+
+        // Modal scroll lock functions
+        function setModalScrollLock(lock) {
+            if (lock) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+        }
+
+        function openModal(modal) {
+            modal.style.display = 'flex';
+            setModalScrollLock(true);
+        }
+
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            // If no other modals are open, unlock scroll
+            const anyOpen = Array.from(document.querySelectorAll('.modal')).some(m => m.style.display === 'flex');
+            if (!anyOpen) setModalScrollLock(false);
+        }
+
+        function closeAllModals() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                closeModal(modal);
+            });
         }
 
         // LOGIN ENFORCEMENT FUNCTIONS
@@ -2223,6 +2285,13 @@
                 showNotification('Welcome back, Attendant!', 'success');
             }
         });
+
+        function animateMainOnLogin() {
+            const main = document.querySelector('main');
+            main.classList.remove('fade-in');
+            void main.offsetWidth; // trigger reflow
+            main.classList.add('fade-in');
+        }
 
         function renderClothes() {
             const pendingGrid = document.getElementById('pendingGrid');
@@ -2467,14 +2536,15 @@
             closePrivacyModal.addEventListener('click', closeAllModals);
             closeAttendanceModal.addEventListener('click', closeAllModals);
             closeQaRejectModal.addEventListener('click', () => {
-                qaRejectModal.style.display = 'none';
+                closeModal(qaRejectModal);
+                qaRejectForm.reset();
             });
             closeOrderHistoryModal.addEventListener('click', closeAllModals);
             closeOrderDetailsModal.addEventListener('click', closeAllModals);
             
             // QA Reject Modal
             cancelQaReject.addEventListener('click', () => {
-                qaRejectModal.style.display = 'none';
+                closeModal(qaRejectModal);
                 qaRejectForm.reset();
             });
             
@@ -2486,19 +2556,19 @@
                 }
                 
                 rejectClothes(currentRejectClothesId, rejectReason);
-                qaRejectModal.style.display = 'none';
+                closeModal(qaRejectModal);
                 qaRejectForm.reset();
             });
             
             // Wallet buttons
             addMoneyBtn.addEventListener('click', () => {
-                walletModal.style.display = 'none';
-                addMoneyModal.style.display = 'flex';
+                closeModal(walletModal);
+                openModal(addMoneyModal);
             });
             
             withdrawMoneyBtn.addEventListener('click', () => {
-                walletModal.style.display = 'none';
-                withdrawMoneyModal.style.display = 'flex';
+                closeModal(walletModal);
+                openModal(withdrawMoneyModal);
             });
             
             // Wallet forms
@@ -2675,6 +2745,7 @@
                     loginError.textContent = '';
                     document.body.style.overflow = '';
                     showNotification('Login successful! Welcome back.', 'success');
+                    animateMainOnLogin();
                 } else {
                     loginError.textContent = 'Invalid username or password.';
                     showNotification('Invalid username or password', 'error');
@@ -2921,7 +2992,7 @@
                 recordsContainer.appendChild(recordElement);
             });
             
-            attendanceDatesModal.style.display = 'flex';
+            openModal(attendanceDatesModal);
             showNotification('Viewing attendance records', 'info');
         }
 
@@ -3163,7 +3234,7 @@
         // Open QA Reject modal
         function openQaRejectModal(clothesId) {
             currentRejectClothesId = clothesId;
-            qaRejectModal.style.display = 'flex';
+            openModal(qaRejectModal);
         }
 
         // Reject clothes (QA Rejected)
@@ -3251,33 +3322,31 @@
             profileBtn.classList.add('active');
             
             // Open profile modal
-            profileModal.style.display = 'flex';
-            
-            //showNotification("Profile options opened", "info");
+            openModal(profileModal);
         }
 
         // Modal functions
         function viewProfile() {
-            profileModal.style.display = 'none';
-            yourProfileModal.style.display = 'flex';
+            closeModal(profileModal);
+            openModal(yourProfileModal);
             
             showNotification("Viewing your profile", "info");
         }
 
         function viewAttendance() {
-            profileModal.style.display = 'none';
+            closeModal(profileModal);
             showAttendanceRecords();
         }
 
         function changePassword() {
-            profileModal.style.display = 'none';
-            changePasswordModal.style.display = 'flex';
+            closeModal(profileModal);
+            openModal(changePasswordModal);
             
             showNotification("Password change form opened", "info");
         }
 
         function viewWallet() {
-            profileModal.style.display = 'none';
+            closeModal(profileModal);
             
             // Update wallet balance display
             document.getElementById('walletBalance').textContent = `₹${walletBalance.toFixed(2)}`;
@@ -3315,13 +3384,13 @@
                 });
             }
             
-            walletModal.style.display = 'flex';
+            openModal(walletModal);
             
             showNotification("Wallet details opened", "info");
         }
 
         function viewOrderHistory() {
-            profileModal.style.display = 'none';
+            closeModal(profileModal);
             
             // Render order history
             const orderHistoryContainer = document.getElementById('orderHistoryContainer');
@@ -3334,7 +3403,7 @@
                         <p>No order history found</p>
                     </div>
                 `;
-                orderHistoryModal.style.display = 'flex';
+                openModal(orderHistoryModal);
                 return;
             }
             
@@ -3404,7 +3473,7 @@
                 orderHistoryContainer.appendChild(orderElement);
             });
             
-            orderHistoryModal.style.display = 'flex';
+            openModal(orderHistoryModal);
             
             showNotification("Order history opened", "info");
         }
@@ -3478,28 +3547,28 @@
             `;
             
             orderDetailsContainer.appendChild(orderDetails);
-            orderDetailsModal.style.display = 'flex';
+            openModal(orderDetailsModal);
             
             showNotification(`Viewing details for order #${orderId}`, "info");
         }
 
         function showAbout() {
             closeAllModals();
-            aboutModal.style.display = 'flex';
+            openModal(aboutModal);
             
             showNotification("About information opened", "info");
         }
 
         function showTerms() {
             closeAllModals();
-            termsModal.style.display = 'flex';
+            openModal(termsModal);
             
             showNotification("Terms and conditions opened", "info");
         }
 
         function showPrivacy() {
             closeAllModals();
-            privacyModal.style.display = 'flex';
+            openModal(privacyModal);
             
             showNotification("Privacy policy opened", "info");
         }
@@ -3516,12 +3585,6 @@
                 document.body.style.overflow = 'hidden';
                 showNotification("Logged out successfully", "success");
             }
-        }
-
-        function closeAllModals() {
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = 'none';
-            });
         }
     </script>
 </body>
